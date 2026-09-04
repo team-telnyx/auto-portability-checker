@@ -13,11 +13,9 @@ Handle Pylon issues/tickets that request number portability checks for Telnyx.
 - Keywords: "portability check", "can we port", "is this number portable", "porting eligibility", "check if we support porting in [country]"
 - Any Pylon ticket where the customer asks whether Telnyx can port their number(s) or whether a country is supported
 
-## Testing restriction (temporary)
+## Sender verification
 
-**Only process tickets where the sender email is `stephenr@telnyx.com`.** Do NOT reply to or close tickets from any other sender. This restriction will be lifted after the testing phase.
-
-To verify the sender, check `message.author.user.email` or `message.email_info.from_email` from the ticket messages. Only proceed if the email matches `stephenr@telnyx.com`.
+Check `message.author.user.email` or `message.email_info.from_email` from the ticket messages to identify the sender. Process tickets from any sender.
 
 ## Pylon API
 
@@ -98,7 +96,7 @@ curl -X POST https://api.telnyx.com/v2/portability_checks \
 
 1. Fetch the ticket: `GET /issues/{id}`
 2. Read messages: `GET /issues/{id}/messages`
-3. **Verify sender** — check `message.author.user.email` or `message.email_info.from_email` on the first customer message. If sender is NOT `stephenr@telnyx.com` → skip this ticket. Do NOT reply or close.
+3. **Identify sender** — check `message.author.user.email` or `message.email_info.from_email` on the first customer message for use in the reply.
 4. Parse the ticket subject + body for:
    - Phone number(s) — if present → Step 2 (number-based flow)
    - Country name only — if no numbers → Step 3 (country-only flow)
@@ -210,7 +208,7 @@ curl -X POST https://api.telnyx.com/v2/portability_checks \
 
 ## Key rules
 
-- **Testing phase:** Only process tickets where sender email is `stephenr@telnyx.com`. Skip all other tickets silently.
+- Process tickets from any sender.
 - **Never assume** country coverage means a specific number is portable. Always run the API check for number-based requests.
 - **Escalate on API failure** — do not guess or infer portability without an API response.
 - **Always reply on the same Pylon ticket** the request came from — use `POST /issues/{id}/reply`.
