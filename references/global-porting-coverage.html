@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Telnyx — Global Porting Coverage</title>
+<style>
+* {margin:0;padding:0;box-sizing:border-box;}
+:root {--tx-dark:#0a0e27;--tx-navy:#111936;--tx-card:#161f3d;--tx-border:#1f2b50;--tx-text:#e4e8f0;--tx-muted:#8b9bc0;--tx-blue:#2d7ff9;--tx-green:#00d68f;--tx-amber:#ffb800;--tx-red:#ff4757;--tx-purple:#a55eea;--tx-radius:12px;}
+body {font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--tx-dark);color:var(--tx-text);line-height:1.6;min-height:100vh;}
+.hero {background:linear-gradient(135deg,#0a0e27 0%,#111936 50%,#0a0e27 100%);padding:80px 24px 60px;text-align:center;border-bottom:1px solid var(--tx-border);}
+.hero h1 {font-size:2.8rem;font-weight:800;margin-bottom:16px;background:linear-gradient(135deg,#2d7ff9,#00d68f);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero p {font-size:1.2rem;color:var(--tx-muted);max-width:700px;margin:0 auto 40px;}
+.stats-bar {display:flex;flex-wrap:wrap;justify-content:center;gap:16px;max-width:1000px;margin:0 auto;}
+.stat-card {background:var(--tx-card);border:1px solid var(--tx-border);border-radius:var(--tx-radius);padding:24px 32px;text-align:center;min-width:140px;flex:1;max-width:180px;}
+.stat-card .stat-value {font-size:2rem;font-weight:800;color:var(--tx-blue);}
+.stat-card .stat-label {font-size:0.85rem;color:var(--tx-muted);margin-top:4px;text-transform:uppercase;letter-spacing:0.5px;}
+.stat-card.green .stat-value {color:var(--tx-green);}
+.stat-card.amber .stat-value {color:var(--tx-amber);}
+.stat-card.purple .stat-value {color:var(--tx-purple);}
+.controls {padding:32px 24px 16px;max-width:1400px;margin:0 auto;}
+.search-box {width:100%;padding:14px 20px;background:var(--tx-card);border:1px solid var(--tx-border);border-radius:var(--tx-radius);color:var(--tx-text);font-size:1rem;outline:none;transition:border-color 0.2s;}
+.search-box:focus {border-color:var(--tx-blue);}
+.search-box::placeholder {color:var(--tx-muted);}
+.filter-row {display:flex;flex-wrap:wrap;gap:12px;margin-top:16px;}
+.filter-group {display:flex;gap:8px;flex-wrap:wrap;}
+.filter-btn {padding:8px 18px;background:var(--tx-card);border:1px solid var(--tx-border);border-radius:100px;color:var(--tx-muted);cursor:pointer;font-size:0.9rem;transition:all 0.2s;}
+.filter-btn:hover {border-color:var(--tx-blue);color:var(--tx-text);}
+.filter-btn.active {background:var(--tx-blue);border-color:var(--tx-blue);color:white;}
+.grid {display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:20px;padding:24px;max-width:1400px;margin:0 auto;}
+.country-card {background:var(--tx-card);border:1px solid var(--tx-border);border-radius:var(--tx-radius);overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;}
+.country-card:hover {transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,0.3);border-color:var(--tx-blue);}
+.card-header {padding:20px 24px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--tx-border);}
+.card-title {display:flex;align-items:center;gap:12px;}
+.card-title .flag {font-size:1.8rem;}
+.card-title h3 {font-size:1.15rem;font-weight:600;}
+.card-body {padding:20px 24px;}
+.types-grid {display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-bottom:16px;}
+.type-cell {text-align:center;padding:10px 6px;background:rgba(255,255,255,0.03);border-radius:8px;}
+.type-label {font-size:0.7rem;color:var(--tx-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;}
+.lead-time {font-size:0.7rem;color:var(--tx-muted);margin-top:4px;}
+.badge {display:inline-block;padding:3px 10px;border-radius:100px;font-size:0.75rem;font-weight:600;}
+.badge-yes {background:rgba(0,214,143,0.15);color:var(--tx-green);}
+.badge-no {background:rgba(255,71,87,0.15);color:var(--tx-red);}
+.badge-tbc {background:rgba(139,155,192,0.15);color:var(--tx-muted);}
+.badge-limited {background:rgba(255,184,0,0.15);color:var(--tx-amber);}
+.badge-other {background:rgba(45,127,249,0.15);color:var(--tx-blue);}
+.porting-info {margin-top:12px;}
+.info-row {display:flex;gap:8px;padding:6px 0;font-size:0.85rem;border-bottom:1px solid rgba(255,255,255,0.05);}
+.info-row:last-child {border-bottom:none;}
+.info-label {color:var(--tx-muted);white-space:nowrap;}
+.info-value {color:var(--tx-text);}
+.requirements-section {margin-top:16px;padding-top:16px;border-top:1px solid var(--tx-border);}
+.requirements-section h4 {font-size:0.95rem;margin-bottom:12px;}
+.req-group {margin-bottom:12px;}
+.req-group strong {font-size:0.8rem;color:var(--tx-blue);display:block;margin-bottom:6px;}
+.req-group ul {list-style:none;padding-left:0;}
+.req-group li {padding:3px 0 3px 16px;font-size:0.8rem;position:relative;}
+.req-group li::before {content:"•";color:var(--tx-blue);position:absolute;left:0;}
+.req-note {font-size:0.8rem;color:var(--tx-muted);padding:6px 0;}
+.loa-downloads {margin-top:10px;display:flex;flex-direction:column;gap:6px;}
+.loa-link {display:inline-block;padding:6px 12px;background:rgba(45,127,249,0.1);border:1px solid rgba(45,127,249,0.3);border-radius:6px;color:var(--tx-blue);text-decoration:none;font-size:0.8rem;}
+.loa-link:hover {background:rgba(45,127,249,0.2);}
+.resource-links {margin-top:16px;padding-top:12px;border-top:1px solid var(--tx-border);display:flex;gap:12px;flex-wrap:wrap;}
+.resource-link {padding:6px 14px;background:rgba(255,255,255,0.05);border:1px solid var(--tx-border);border-radius:8px;color:var(--tx-text);text-decoration:none;font-size:0.8rem;transition:all 0.2s;}
+.resource-link:hover {background:rgba(45,127,249,0.1);border-color:var(--tx-blue);color:var(--tx-blue);}
+.no-results {text-align:center;padding:60px 24px;color:var(--tx-muted);font-size:1.1rem;display:none;}
+.footer {text-align:center;padding:40px 24px;color:var(--tx-muted);font-size:0.85rem;border-top:1px solid var(--tx-border);margin-top:40px;}
+.footer a {color:var(--tx-blue);text-decoration:none;}
+.usca-banner {max-width:1400px;margin:24px auto;padding:16px 24px;background:var(--tx-card);border:1px solid var(--tx-border);border-radius:var(--tx-radius);text-align:center;color:var(--tx-muted);font-size:0.9rem;}
+.usca-banner a {color:var(--tx-blue);text-decoration:none;}
+@media (max-width:768px) {.hero h1 {font-size:2rem;}.hero p {font-size:1rem;}.stats-bar {flex-direction:column;align-items:center;}.stat-card {min-width:200px;}.grid {grid-template-columns:1fr;padding:16px;}.types-grid {grid-template-columns:1fr 1fr;}}
+@media (max-width:480px) {.hero h1 {font-size:1.6rem;}.hero {padding:50px 16px 30px;}.controls {padding:20px 16px 8px;}.grid {padding:12px;gap:12px;}.card-header {padding:14px 16px;}.card-body {padding:14px 16px;}}
+@keyframes fadeInUp {from {opacity:0;transform:translateY(20px);}to {opacity:1;transform:translateY(0);}}
+.country-card {animation:fadeInUp 0.4s ease-out;}
+.toggle-carriers {margin-top:8px;cursor:pointer;color:var(--tx-blue);font-size:0.75rem;font-weight:600;user-select:none;display:inline-flex;align-items:center;gap:4px;}
+.toggle-carriers:hover {text-decoration:underline;}
+.toggle-carriers .arrow {transition:transform 0.2s;}
+.toggle-carriers.open .arrow {transform:rotate(90deg);}
+.carrier-list {display:none;margin-top:8px;padding:10px;background:rgba(255,184,0,0.05);border:1px solid rgba(255,184,0,0.2);border-radius:8px;font-size:0.8rem;}
+.carrier-list.open {display:block;}
+.carrier-list h5 {font-size:0.8rem;color:var(--tx-amber);margin-bottom:6px;}
+.carrier-list p {color:var(--tx-muted);font-size:0.75rem;margin-bottom:8px;}
+.carrier-list ul {list-style:none;padding-left:0;columns:2;gap:8px;}
+.carrier-list li {padding:3px 0 3px 16px;position:relative;color:var(--tx-text);}
+.carrier-list li::before {content:"✓";color:var(--tx-green);position:absolute;left:0;font-size:0.7rem;}
+.carrier-list .carrier-note {color:var(--tx-muted);font-size:0.72rem;margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,184,0,0.15);}
+.carrier-list .carrier-note a {color:var(--tx-blue);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="hero">
+  <h1>Global Porting Coverage</h1>
+  <p>Port phone numbers across 39 countries with Telnyx. Coverage, timelines, number types, requirements, and LOA templates — all in one place.</p>
+  <div class="stats-bar">
+    <div class="stat-card"><div class="stat-value">39</div><div class="stat-label">Countries</div></div>
+    <div class="stat-card"><div class="stat-value">39</div><div class="stat-label">Local</div></div>
+    <div class="stat-card purple"><div class="stat-value">35</div><div class="stat-label">National</div></div>
+    <div class="stat-card green"><div class="stat-value">30</div><div class="stat-label">Toll-Free</div></div>
+    <div class="stat-card amber"><div class="stat-value">5</div><div class="stat-label">Mobile</div></div>
+    <div class="stat-card green"><div class="stat-value">34</div><div class="stat-label">LOA Templates</div></div>
+  </div>
+</div>
+<div class="controls">
+  <input type="text" class="search-box" id="search" placeholder="Search countries..." />
+  <div class="filter-row"><div class="filter-group">
+    <button class="filter-btn active" data-filter="all">All Regions</button>
+    <button class="filter-btn" data-filter="EMEA">EMEA</button>
+    <button class="filter-btn" data-filter="APAC">APAC</button>
+    <button class="filter-btn" data-filter="Americas">Americas</button>
+  </div></div>
+</div>
+<div class="usca-banner">🇺🇸 US, 🇨🇦 Canada & 🇵🇷 Puerto Rico porting is handled by the US Porting Team — <a href="https://support.telnyx.com/en/articles/8673249-us-ca-toll-free-number-porting" target="_blank">View US/CA Porting Guide</a></div>
+<div class="grid" id="grid"><div class="country-card" data-country="argentina" data-region="Americas">
+      <div class="card-header"><div class="card-title"><span class="flag">🇦🇷</span><h3>Argentina</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">N/A</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>All:</strong><ul><li>Portability form (provided once we submit)</li><li>LOA</li><li>Latest Invoice</li></ul></div><div class="loa-downloads"><a href="mailto:porting.intl@telnyx.com" class="loa-link">📧 Request LOA Template</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/9271183-argentina-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="australia" data-region="APAC">
+      <div class="card-header"><div class="card-title"><span class="flag">🇦🇺</span><h3>Australia</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">3-6 Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">3-6 Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">3-6 Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">1-5 Business days</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 8 AM to 5 PM Local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>Local National Tollfree:</strong><ul><li>LOA - Letter of Authorization with local Australian address</li><li>ABN - Australian Business Number (for business accounts)</li><li>Latest Invoice - From current carrier, dated within the last 30 days</li></ul></div><div class="req-group"><strong>Mobile:</strong><ul><li>LOA - With local Australian address</li><li>Latest Invoice - From current service provider</li><li>Service Type - Specify Prepaid or Postpaid</li><li>Identity Documents - 2 forms of Australian Government-issued ID</li></ul></div><div class="loa-downloads"><a href="https://assets.ctfassets.net/taysl255dolk/72Cl4rcgvAl9N3Lt4iUalk/34cad211371dd434f52088f573a5f6b4/LoA_-_TELNYX_-_australia.pdf" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/3266212-australia-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="austria" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇦🇹</span><h3>Austria</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">7+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">7+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">7+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 9 AM to 5 PM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>Local National:</strong><ul><li>LOA (Local address required)</li><li>Account Number</li><li>ID / Passport copy</li><li>Company Registration certificate</li><li>Latest Invoice</li><li>Proof of address</li></ul></div><div class="req-group"><strong>Tollfree:</strong><ul><li>LOA</li><li>Current underlying carrier's name</li><li>Porting history (if the number(s) were ported before)</li><li>Account Number</li><li>Latest Invoice</li></ul></div><div class="loa-downloads"><a href="http://assets.ctfassets.net/taysl255dolk/5bvRirKjh7u8TWy0LkYiSc/c3d9da4269c2158f0e67496068a895e4/Rufnummernmitnahme_KDB_TELNYX.pdf" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/3266409-austria-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="belgium" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇧🇪</span><h3>Belgium</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">4+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">4+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">4+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 8 AM to 5 PM Local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>Local:</strong><ul><li>LOA (Local address required, area code must match the address on file)</li><li>VAT / TAX ID</li><li>Latest Invoice</li><li>Proof of local address</li></ul></div><div class="req-group"><strong>National Tollfree:</strong><ul><li>LOA (National address required)</li><li>VAT / TAX ID</li><li>Latest Invoice</li><li>Proof of local address</li></ul></div><div class="loa-downloads"><a href="https://assets.ctfassets.net/taysl255dolk/6YYtHkPiDoOfhR8Vp3QxUz/3f7b77cf78ecdebe280c6c0226ac12ea/LoA_-_Telnyx_-_INTL.pdf" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/3266421-belgium-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="brazil" data-region="Americas">
+      <div class="card-header"><div class="card-title"><span class="flag">🇧🇷</span><h3>Brazil</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time after 5 PM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>All:</strong><ul><li>LOA (CPF / CNPJ required)</li><li>ID / Passport copy</li><li>Company Registration certificate</li><li>Latest Invoice</li></ul></div><div class="loa-downloads"><a href="https://www.dropbox.com/s/fmli59wv3wfky7w/BrazilLOA.pdf?dl=0" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/3266425-brazil-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="chile" data-region="Americas">
+      <div class="card-header"><div class="card-title"><span class="flag">🇨🇱</span><h3>Chile</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 00:00 AM to 4 AM Local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>All:</strong><ul><li>E-RUT</li><li>LOA or POA</li><li>Latest Invoice</li><li>Power of Attorney</li><li>Certificate of Incorporation</li><li>RUT of the individual requesting portability</li><li>Proof of Payment (National carrier invoice, no resellers)</li></ul></div><div class="loa-downloads"><a href="mailto:porting.intl@telnyx.com" class="loa-link">📧 Request LOA Template</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/3266652-chile-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="croatia" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇭🇷</span><h3>Croatia</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">7 Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">7 Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 08 AM and 12 PM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>Local National:</strong><ul><li>LOA</li><li>ID / Passport copy</li><li>Company Registration certificate</li><li>Latest Invoice</li></ul></div><div class="req-group"><strong>Tollfree:</strong><ul><li>LOA</li><li>ID / Passport copy / Company Registration Certificate</li><li>Latest invoice</li></ul></div><div class="loa-downloads"><a href="https://www.dropbox.com/s/1kd2hs03tq8o0bg/Croatia_Porting_Form.pdf?dl=0" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/3266656-croatia-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="cyprus" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇨🇾</span><h3>Cyprus</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">9 AM local (only possibility)</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>Local:</strong><ul><li>LOA (with Local address)</li><li>Latest Invoice with the current carrier</li><li>Company Registration (if company)</li><li>ID or Passport Number of the legal representative</li><li>Proof of address</li></ul></div><div class="req-group"><strong>National Tollfree:</strong><ul><li>LOA (with National address)</li><li>Latest Invoice with the current carrier</li><li>Company Registration (if company)</li><li>ID or Passport Number of the legal representative</li><li>Proof of address</li></ul></div><div class="loa-downloads"><a href="https://assets.ctfassets.net/taysl255dolk/1Cq2IXxuZiFRu03aA3LXB6/8006b5ee40f97ac95f050be7013c8bcb/CYPRUS_LOA-_Telnyx.pdf" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/3267566-cyprus-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="czech republic" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇨🇿</span><h3>Czech Republic</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 9 AM to 4 PM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>All:</strong><ul><li>LOA (Local Service address)</li><li>OKU (Migration code)</li><li>Latest Invoice</li><li>VAT / TAX ID</li><li>Proof of address</li></ul></div><div class="loa-downloads"><a href="mailto:porting@telnyx.com" class="loa-link">📧 Request LOA Template</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/5190455-czech-republic-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="denmark" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇩🇰</span><h3>Denmark</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">14+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">14+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">14+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 09 AM to 4 PM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>All:</strong><ul><li>LOA (a local address is mandatory, wet signature required)</li><li>Local TAX ID / VAT</li><li>Latest Invoice with the current provider</li></ul></div><div class="loa-downloads"><a href="https://assets.ctfassets.net/taysl255dolk/6YYtHkPiDoOfhR8Vp3QxUz/3f7b77cf78ecdebe280c6c0226ac12ea/LoA_-_Telnyx_-_INTL.pdf" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/3266720-denmark-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="estonia" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇪🇪</span><h3>Estonia</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">10 Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 9 AM to 4 PM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>Local Personal:</strong><ul><li>Name, last name</li><li>Contact phone number</li><li>Copy of ID or Passport</li></ul></div><div class="req-group"><strong>Local Business:</strong><ul><li>Name of legal representative</li><li>Contact phone number</li><li>Company name</li><li>Copy of ID or Passport of legal representative</li><li>Copy of company registration</li></ul></div><div class="req-group"><strong>Local Address:</strong><ul><li>Address in Estonia (street, building number, postal code, city, country)</li><li>Copy of utility bill (no older than 3 months)</li></ul></div><div class="req-group"><strong>Tollfree Personal:</strong><ul><li>Name, last name</li><li>Contact phone number</li><li>Passport or ID copy</li></ul></div><div class="req-group"><strong>Tollfree Business:</strong><ul><li>Company name</li><li>Contact phone number</li><li>Company registration certificate</li></ul></div><div class="req-group"><strong>Tollfree Address:</strong><ul><li>Address Worldwide (street, building number, postal code, city and country)</li></ul></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/3506159-estonia-number-requirements" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="finland" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇫🇮</span><h3>Finland</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 08 AM to 5 PM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>Local National:</strong><ul><li>LOA</li><li>VAT/TAX ID or social security number</li><li>Latest Invoice</li></ul></div><div class="req-group"><strong>Tollfree:</strong><ul><li>LOA</li><li>VAT/TAX ID or social security number</li><li>Attorney's authorization for representative (if number belongs to a company)</li><li>Latest Invoice</li></ul></div><div class="req-group"><strong>Common Rejections:</strong><ul><li>Wrong end-user on document</li><li>Signature not readable/valid on the LOA</li></ul></div><div class="loa-downloads"><a href="https://assets.ctfassets.net/taysl255dolk/BjAY6YlvDP8UHiRtMAtSP/009510c32ea7832407ab6c525f69478a/FINLAND-TELNYX.pdf" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/3266934-finland-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="france" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇫🇷</span><h3>France</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">8+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">8+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">8+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 10 AM and 2 PM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>All:</strong><ul><li>LOA (National address mandatory)</li><li>SIRET code (for business accounts, 14 digits)</li><li>RIO code (12 characters - dial 3179 to retrieve)</li><li>Latest Invoice with the current provider</li><li>Proof of address (dated within 3 months)</li></ul></div><div class="loa-downloads"><a href="https://assets.ctfassets.net/taysl255dolk/4pv4cqjnsUfEGbyexn1Ycy/536af1c7e37734422a9556ea38582ceb/Telnyx_LoA_-_France.pdf" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/3266956-france-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="germany" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇩🇪</span><h3>Germany</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">7+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">7+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5-7 Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 6 AM to 8 AM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>Local National:</strong><ul><li>Porting Form (Local address from the same city as the number)</li><li>Latest Invoice (from the current provider)</li><li>Proof of address</li><li>ID / Passport copy / Company Registration certificate</li></ul></div><div class="req-group"><strong>Tollfree:</strong><ul><li>Porting Form (Local Address required within Germany)</li><li>Latest Invoice (only if current provider is a reseller)</li><li>Number allocation document (Zuteilungsbescheid)</li><li>ID / Passport copy / Company Registration certificate</li></ul></div><div class="loa-downloads"><a href="https://www.dropbox.com/s/4d6jx7izmgaiun4/german-porting-document-and-address%20confirmation.pdf" target="_blank" class="loa-link">📄 Download LOA</a><a href="https://assets.ctfassets.net/taysl255dolk/1tsn59edoZYrYtwIzaKYd0/f4563a1894c76e07a588eb32e364999e/TFN_LOA.pdf" target="_blank" class="loa-link">📄 Download Toll-Free LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/3266960-germany-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="greece" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇬🇷</span><h3>Greece</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">3+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">3+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">3+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 9 AM to 6 PM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>Local:</strong><ul><li>LOA</li><li>Greek TAX / VAT ID or company registration number</li><li>ID / Passport copy</li><li>Company Registration certificate</li><li>Latest Invoice with current carrier (numbers must be indicated on the invoice)</li></ul></div><div class="loa-downloads"><a href="http://assets.ctfassets.net/taysl255dolk/6YYtHkPiDoOfhR8Vp3QxUz/3f7b77cf78ecdebe280c6c0226ac12ea/LoA_-_Telnyx_-_INTL.pdf" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/3266975-greece-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="hungary" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇭🇺</span><h3>Hungary</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 8 PM to 12 AM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>All:</strong><ul><li>LOA</li><li>Latest Invoice</li><li>Company Registration (if company)</li><li>Proof of address</li></ul></div><div class="loa-downloads"><a href="mailto:porting@telnyx.com" class="loa-link">📧 Request LOA Template</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/5188524-hungary-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="ireland" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇮🇪</span><h3>Ireland</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">1-7 Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">1-7 Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">1-7 Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 10 AM to 4 PM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>All:</strong><ul><li>LOA (downloadable template)</li><li>UAN (8 digits, found on end-user's invoice or request from current provider)</li></ul></div><div class="req-note"><em>Note:</em> Customers porting away from EIR or OEIR must ensure with the current provider prior to port that numbers don't have special services.</div><div class="loa-downloads"><a href="https://www.dropbox.com/s/9f8nesm8873og7d/IRELANDGEOPORTINGFORM-edit.pdf?dl=0" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/3266983-ireland-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="israel" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇮🇱</span><h3>Israel</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">4+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">Yes</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">4+ Business days</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 9 AM to 5 PM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>Local National Mobile:</strong><ul><li>LOA</li><li>VAT / TAX ID</li><li>Latest Invoice</li></ul></div><div class="req-note"><em>Note:</em> If porting a Mobile Number under a business, the invoice must be the underlying carrier's. An official proof of ownership signed by the underlying carrier will be required.</div><div class="loa-downloads"><a href="https://assets.ctfassets.net/taysl255dolk/6YYtHkPiDoOfhR8Vp3QxUz/3f7b77cf78ecdebe280c6c0226ac12ea/LoA_-_Telnyx_-_INTL.pdf" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/3266993-israel-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="italy" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇮🇹</span><h3>Italy</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">15+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">15+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">15-20 Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 8 AM to 4 PM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>Local National:</strong><ul><li>LOA (Local address required)</li><li>Local TAX / VAT ID or company registration number</li><li>Migration code</li><li>Latest Invoice</li><li>Copy of Passport / ID of Authorized Person</li><li>Fiscal code of Authorized Person (16 characters)</li><li>Proof of local address (local address in Italian territory and legal presence with valid fiscal code)</li></ul></div><div class="req-group"><strong>Tollfree:</strong><ul><li>LOA (Local address required)</li><li>Local TAX / VAT ID or company registration number</li><li>Latest Invoice</li><li>Copy of Passport / ID of Authorized Person</li><li>Proof of local address</li></ul></div><div class="loa-downloads"><a href="https://assets.ctfassets.net/taysl255dolk/45LOLnr1ZO8PfWfHpAID9z/cf24bfaa49a0fc3d04900d5c0f9dfac5/LoA_TELNYX_Italy.pdf" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/3267012-italy-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="latvia" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇱🇻</span><h3>Latvia</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">10+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">10+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>Local National:</strong><ul><li>LOA</li><li>Latest Invoice</li><li>ID number of the Authorized Person</li><li>Company Registration number (only if company)</li></ul></div><div class="loa-downloads"><a href="https://assets.ctfassets.net/taysl255dolk/6YYtHkPiDoOfhR8Vp3QxUz/3f7b77cf78ecdebe280c6c0226ac12ea/LoA_-_Telnyx_-_INTL.pdf" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/5188540-latvia-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="lithuania" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇱🇹</span><h3>Lithuania</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">1-2 Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">1-2 Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">1-2 Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 9 AM to 4 PM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>All:</strong><ul><li>LOA</li><li>Latest Invoice</li><li>VAT / TAX ID (if company) or Personal ID code (asmens kodas) if personal</li></ul></div><div class="loa-downloads"><a href="https://assets.ctfassets.net/taysl255dolk/d30N9jIww0vlZyFZrovAP/58d1196eba9eb350947708a2de8bc840/Lithuania_Loa_-_Telnyx.pdf" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/5190470-lithuania-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="luxembourg" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇱🇺</span><h3>Luxembourg</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">3+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">3+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">3+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 9 AM to 4 PM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>All:</strong><ul><li>LOA</li><li>VAT / TAX ID</li><li>Local contact phone number</li><li>Latest Invoice</li></ul></div><div class="loa-downloads"><a href="https://assets.ctfassets.net/taysl255dolk/6YYtHkPiDoOfhR8Vp3QxUz/3f7b77cf78ecdebe280c6c0226ac12ea/LoA_-_Telnyx_-_INTL.pdf" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/5188555-luxembourg-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="mexico" data-region="Americas">
+      <div class="card-header"><div class="card-title"><span class="flag">🇲🇽</span><h3>Mexico</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">2-7 Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">2-7 Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">2-7 Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">7 Business days</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 2 AM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>Local National:</strong><ul><li>LOA (NIP for individual person) signed by the Authorized Person</li><li>Copy of the National ID / Passport</li><li>Latest Invoice</li><li>Company Registration Certificate (Acta Constitutiva) - if company</li></ul></div><div class="req-group"><strong>Tollfree:</strong><ul><li>LOA signed by the Authorized Person</li><li>Copy of the ID / Passport</li><li>Latest Invoice</li><li>Company Registration Certificate (Acta Constitutiva) - if company</li></ul></div><div class="req-group"><strong>Mobile:</strong><ul><li>LOA signed by the Authorized Person</li><li>Copy of the National ID / Passport</li><li>Assignment Letter completed and signed</li><li>Notarial Deed (POA) - if company</li></ul></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/3267101-mexico-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="netherlands" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇳🇱</span><h3>Netherlands</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">2+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">7+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-limited">◐ Smart only</span><div class="lead-time">7+ Business days</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 09 AM to 4 PM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>Local Smart Mobile:</strong><ul><li>LOA (User's local address from the same city as the number)</li><li>Latest Invoice</li><li>Copy of Company Registration certificate / Copy of ID</li><li>Proof of local address</li></ul></div><div class="req-group"><strong>National:</strong><ul><li>LOA (National address required)</li><li>Latest Invoice</li><li>Copy of Company Registration / Copy of ID</li><li>Proof of local address</li><li>Number allocation document (OPTA/ACM Beschikking) - for +3188 only</li></ul></div><div class="req-group"><strong>Tollfree:</strong><ul><li>LOA</li><li>Latest Invoice</li><li>ID / Passport copy</li><li>Company Registration certificate</li></ul></div><div class="loa-downloads"><a href="https://assets.ctfassets.net/taysl255dolk/6YYtHkPiDoOfhR8Vp3QxUz/3f7b77cf78ecdebe280c6c0226ac12ea/LoA_-_Telnyx_-_INTL.pdf" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/3267124-netherlands-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="new zealand" data-region="APAC">
+      <div class="card-header"><div class="card-title"><span class="flag">🇳🇿</span><h3>New Zealand</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">10+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">10+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">10+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 08 AM and 12 PM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>All:</strong><ul><li>LOA - Letter of Authorization signed by the authorized person</li><li>Latest Invoice - From current carrier, dated within the last 30 days</li><li>Contact Details - Full contact information</li><li>Local Address - Address within New Zealand is required</li></ul></div><div class="loa-downloads"><a href="https://assets.ctfassets.net/taysl255dolk/72Cl4rcgvAl9N3Lt4iUalk/34cad211371dd434f52088f573a5f6b4/LoA_-_TELNYX_-_australia.pdf" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/3267206-new-zealand-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="norway" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇳🇴</span><h3>Norway</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">7+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">7+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">14+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 07 AM to 3 PM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>All:</strong><ul><li>LOA (downloadable template)</li></ul></div><div class="req-note"><em>Note:</em> Contact porting@telnyx.com for additional details.</div><div class="loa-downloads"><a href="https://assets.ctfassets.net/taysl255dolk/6YYtHkPiDoOfhR8Vp3QxUz/3f7b77cf78ecdebe280c6c0226ac12ea/LoA_-_Telnyx_-_INTL.pdf" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/5188563-norway-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="peru" data-region="Americas">
+      <div class="card-header"><div class="card-title"><span class="flag">🇵🇪</span><h3>Peru</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">2-7 Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 00:00 AM to 4 AM Local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>All:</strong><ul><li>Portability form (provided once we submit)</li><li>LOA</li><li>Latest Invoice</li></ul></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/3267436-peru-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="portugal" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇵🇹</span><h3>Portugal</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">7+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">7+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-other">check Telserv</span><div class="lead-time">N/A</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">N/A</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>Local National:</strong><ul><li>LOA with local address within the city as the number prefix (wet signature mandatory)</li><li>Copy of the Latest Invoice</li><li>Copy of the Passport / ID of the Authorized Person</li><li>Power of attorney (proof that the Authorized Person who signed the LOA has the power to do so)</li><li>CVP (Portability Validation Code / Migration code)</li><li>TAX ID / VAT</li><li>Proof of address</li></ul></div><div class="req-note"><em>Note:</em> Telnyx does not currently support Number Portability for PT local Mainline numbers with associated services. Outage during porting may occur (up to 3 hours, usually max 30 minutes).</div><div class="loa-downloads"><a href="https://assets.ctfassets.net/taysl255dolk/1Oaa0QNqequee3pdi3izCY/1e82e26ba0ef6789315a0f0d19e20188/Loa_-_Telnyx-_Portugal__PRT_.pdf" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/5120062-portugal-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="poland" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇵🇱</span><h3>Poland</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">3+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">3+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Anytime on FOC</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>Local National:</strong><ul><li>LOA (for local numbers, address must be within the same area as the phone number)</li><li>VAT / TAX ID (NIP) for Business, or PESEL for Personal</li><li>Company Registration Certificate (business only)</li><li>Latest invoice with the current carrier</li><li>ID / Passport copy of the authorized person</li></ul></div><div class="loa-downloads"><a href="https://assets.ctfassets.net/taysl255dolk/1oEnZQgZI2KjrRJ9xiSFPk/4b4fa33b8cb5199be0bd33ab8b00c58f/Poland_LOA_-_Telnyx_.pdf" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/5188583-poland-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="romania" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇷🇴</span><h3>Romania</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">3+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 9AM local or 1PM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>All:</strong><ul><li>LOA</li><li>Latest Invoice</li><li>Company Registration (if company)</li></ul></div><div class="loa-downloads"><a href="https://assets.ctfassets.net/taysl255dolk/5FZ4qUVt9KGSMsGzbMK6zm/c09622fb44aac104169c67344c25dcf1/Portability_Form_-_Telnyx_-_Romania.pdf" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/5188564-romania-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="slovakia" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇸🇰</span><h3>Slovakia</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">7+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">7+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">7+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 12 PM to 6 PM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>All:</strong><ul><li>LOA</li><li>Latest Invoice</li><li>VAT / TAX ID</li><li>Company Registration Certificate (if company)</li></ul></div><div class="loa-downloads"><a href="https://assets.ctfassets.net/taysl255dolk/1od8xuO7Y7WKUrIlXXCM2t/57023f6b1ab4e56954597cfeb5151aa4/Slovakia_telnyx.pdf" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/5188567-slovakia-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="slovenia" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇸🇮</span><h3>Slovenia</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">1+ Business day</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">1+ Business day</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">1+ Business day</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 12 AM to 02 AM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>All:</strong><ul><li>LOA</li><li>Latest Invoice</li><li>TAX ID / VAT</li></ul></div><div class="loa-downloads"><a href="https://www.dropbox.com/home/International%20Porting%20Documentation/Slovenia?preview=LOA+-+Telnyx+-+Slovenia+-+ENG.docx" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/5188572-slovenia-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="south africa" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇿🇦</span><h3>South Africa</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5-14 Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5-14 Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">7+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time after 5 PM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>Local:</strong><ul><li>LOA (local address required)</li><li>Latest Invoice</li><li>ID / Passport copy</li><li>Company Registration certificate</li><li>Proof of address</li></ul></div><div class="req-group"><strong>National Tollfree:</strong><ul><li>LOA (National address required; for company requests, no E-signatures, on company letterhead or with company stamp)</li><li>Latest Invoice</li><li>ID / Passport copy</li><li>Company Registration certificate</li><li>Proof of address</li></ul></div><div class="loa-downloads"><a href="https://www.dropbox.com/s/fvfhmlarpen9ucb/SouthAfrica-portingform.pdf?dl=0" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/4400326-south-africa-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="spain" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇪🇸</span><h3>Spain</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 08 AM to 11 AM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>All:</strong><ul><li>LOA (Spanish local address mandatory)</li><li>NIF/NIE/CIF (Tax Identification Number)</li><li>Latest Invoice from current carrier</li><li>Proof of address (dated within 3 months)</li></ul></div><div class="loa-downloads"><a href="https://assets.ctfassets.net/taysl255dolk/4mfyR6jMGb8TvN0p5GQOUZ/b98742b348ba0c623ffab3d99ba3db31/TELNYX_ES_LOA.pdf" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/3267595-spain-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="sweden" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇸🇪</span><h3>Sweden</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">14+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">14+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">14+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 08 AM to 4 PM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>All:</strong><ul><li>LOA (local address mandatory, wet signature required)</li><li>Local TAX ID / VAT (12 characters long)</li><li>Latest Invoice</li></ul></div><div class="loa-downloads"><a href="https://assets.ctfassets.net/taysl255dolk/6YYtHkPiDoOfhR8Vp3QxUz/3f7b77cf78ecdebe280c6c0226ac12ea/LoA_-_Telnyx_-_INTL.pdf" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/3275772-sweden-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="switzerland" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇨🇭</span><h3>Switzerland</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">10+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">10+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">14+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 08 AM to 5 PM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>Local National:</strong><ul><li>LOA (porting wish date must be mentioned, wet signature required)</li><li>Latest Invoice</li><li>VAT / TAX ID</li><li>Proof of address dated within 3 months (Latest invoice/Utility Bill/Insurance)</li></ul></div><div class="req-group"><strong>Tollfree:</strong><ul><li>LOA (porting wish date must be mentioned)</li><li>Latest Invoice</li><li>Ownership proof from BAKOM (with ref number)</li></ul></div><div class="req-note"><em>Note:</em> A single number belonging to a DDI Range cannot be ported out separately. DDI Range must include at least 10 successive Numbers or a multiple of it.</div><div class="loa-downloads"><a href="https://assets.ctfassets.net/taysl255dolk/6YYtHkPiDoOfhR8Vp3QxUz/3f7b77cf78ecdebe280c6c0226ac12ea/LoA_-_Telnyx_-_INTL.pdf" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/3267626-switzerland-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="singapore" data-region="APAC">
+      <div class="card-header"><div class="card-title"><span class="flag">🇸🇬</span><h3>Singapore</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 2 PM to 4 PM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>All:</strong><ul><li>LOA - Signed by the authorized person</li><li>Latest Invoice from current carrier</li><li>Company Registration certificate (for business)</li><li>Copy of ID (for individual)</li><li>Local Singapore address</li></ul></div><div class="req-note"><em>Note:</em> Porting hours are limited. Only local numbers are portable.</div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/7235002-singapore-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="united kingdom" data-region="EMEA">
+      <div class="card-header"><div class="card-title"><span class="flag">🇬🇧</span><h3>United Kingdom</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">5+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">10+ Business days</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">10+ Business days</div></div>
+          <div class="type-cell" style="cursor:pointer;" onclick="toggleCarriers(this)"><div class="type-label">Mobile</div><span class="badge badge-limited">◐ Limited</span><div class="lead-time">1+ Business day</div><div style="font-size:0.65rem;color:var(--tx-blue);margin-top:4px;">Click for carriers</div></div>
+        </div>
+        <div class="carrier-list" id="uk-carriers">
+          <h5>📋 Carriers We Can Port From</h5>
+          <p>Any UK mobile number that is with a carrier not listed below is not portable to Telnyx. You can check the carrier at <a href="https://freecarrierlookup.com/" target="_blank">freecarrierlookup.com</a>.</p>
+          <ul>
+            <li>Vodafone</li>
+            <li>EE TM / Orange</li>
+            <li>Telefonica O2 & Virgin Media</li>
+            <li>Sky</li>
+            <li>Three UK</li>
+            <li>Gamma</li>
+            <li>LycaMobile</li>
+            <li>Vectone</li>
+            <li>Spusu (Mass Responsive)</li>
+            <li>Truphone</li>
+            <li>Cloud9 (Wireless Logic)</li>
+            <li>Lebara</li>
+          </ul>
+          <div class="carrier-note">Any UK mobile number with a carrier not listed above is not portable to Telnyx.</div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">Standard time 10 AM to 2 PM local</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>Local:</strong><ul><li>UK template LOA (underlying carrier's name and/or Cupid code, Line type {single or multi}, Local address with valid postcode)</li><li>Latest Invoice with the current carrier</li></ul></div><div class="req-group"><strong>National Tollfree:</strong><ul><li>UK template LOA (underlying carrier's name, Local address with valid postcode, Billing Account Number)</li><li>Latest Invoice with the current carrier</li></ul></div><div class="req-group"><strong>Mobile:</strong><ul><li>LOA</li><li>Latest Invoice</li><li>PAC Number (Porting Authorization Code)</li></ul></div><div class="loa-downloads"><a href="https://assets.ctfassets.net/taysl255dolk/4e1xrif0j3u8PU1qrl6GY5/bc86537edcb4e1f903da88ea986bd293/TELNYX_-_UK_CLOA_2023.pdf" target="_blank" class="loa-link">📄 Download LOA</a></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/3267693-united-kingdom-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div><div class="country-card" data-country="dominican republic" data-region="Americas">
+      <div class="card-header"><div class="card-title"><span class="flag">🇩🇴</span><h3>Dominican Republic</h3></div></div>
+      <div class="card-body">
+        <div class="types-grid">
+          <div class="type-cell"><div class="type-label">Local</div><span class="badge badge-limited">◐ Limited</span><div class="lead-time">TBC</div></div>
+          <div class="type-cell"><div class="type-label">National</div><span class="badge badge-yes">✓ Yes</span><div class="lead-time">TBC</div></div>
+          <div class="type-cell"><div class="type-label">Toll-Free</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+          <div class="type-cell"><div class="type-label">Mobile</div><span class="badge badge-no">✗ No</span><div class="lead-time">N/A</div></div>
+        </div>
+        <div class="porting-info"><div class="info-row"><span class="info-label">🕐 Porting Hours:</span><span class="info-value">TBC</span></div></div>
+        <div class="requirements-section"><h4>📋 Porting Requirements</h4><div class="req-group"><strong>All:</strong><ul><li>LOA</li><li>Latest Invoice</li><li>ID / Passport copy</li><li>Company Registration (if company)</li></ul></div></div>
+        <div class="resource-links"><a href="https://support.telnyx.com/en/articles/5190458-the-dominican-republic-number-porting" target="_blank" class="resource-link">📖 Full Porting Guide</a></div>
+      </div></div></div>
+<div class="no-results" id="noResults">No countries match your search.</div>
+<div class="footer">
+  <p>Data sourced from Telnyx Porting Operations • <a href="https://support.telnyx.com" target="_blank">Telnyx Support</a></p>
+  <p style="margin-top:8px;">For questions about number porting, contact <a href="mailto:porting@telnyx.com">porting@telnyx.com</a></p>
+</div>
+<script>
+const search=document.getElementById('search'),noResults=document.getElementById('noResults'),cards=document.querySelectorAll('.country-card');
+let activeRegion='all';
+function filterCards(){const q=search.value.toLowerCase().trim();let v=0;cards.forEach(c=>{const co=c.dataset.country,r=c.dataset.region;const ms=!q||co.includes(q),mr=activeRegion==='all'||r===activeRegion;if(ms&&mr){c.style.display='';v++;}else{c.style.display='none';}});noResults.style.display=v===0?'block':'none';}
+search.addEventListener('input',filterCards);
+document.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');activeRegion=b.dataset.filter;filterCards();}));
+function toggleCarriers(cell){const card=cell.closest('.country-card');const list=card.querySelector('.carrier-list');if(list){list.classList.toggle('open');}};
+</script>
+</body>
+</html>

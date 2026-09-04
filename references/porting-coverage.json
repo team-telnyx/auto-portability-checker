@@ -1,0 +1,2042 @@
+{
+  "Argentina": {
+    "slug": "argentina",
+    "region": "Americas",
+    "flag": "🇦🇷",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "national": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      },
+      "toll_free": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "N/A",
+    "requirements": {
+      "All": [
+        "Portability form (provided once we submit)",
+        "LOA",
+        "Latest Invoice"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "mailto:porting.intl@telnyx.com",
+        "label": "📧 Request LOA Template"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/9271183-argentina-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Australia": {
+    "slug": "australia",
+    "region": "APAC",
+    "flag": "🇦🇺",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "3-6 Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "3-6 Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "3-6 Business days"
+      },
+      "mobile": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "1-5 Business days"
+      }
+    },
+    "porting_hours": "Standard time 8 AM to 5 PM Local",
+    "requirements": {
+      "Local National Tollfree": [
+        "LOA - Letter of Authorization with local Australian address",
+        "ABN - Australian Business Number (for business accounts)",
+        "Latest Invoice - From current carrier, dated within the last 30 days"
+      ],
+      "Mobile": [
+        "LOA - With local Australian address",
+        "Latest Invoice - From current service provider",
+        "Service Type - Specify Prepaid or Postpaid",
+        "Identity Documents - 2 forms of Australian Government-issued ID"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "https://assets.ctfassets.net/taysl255dolk/72Cl4rcgvAl9N3Lt4iUalk/34cad211371dd434f52088f573a5f6b4/LoA_-_TELNYX_-_australia.pdf",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/3266212-australia-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Austria": {
+    "slug": "austria",
+    "region": "EMEA",
+    "flag": "🇦🇹",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "7+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "7+ Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "7+ Business days"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 9 AM to 5 PM local",
+    "requirements": {
+      "Local National": [
+        "LOA (Local address required)",
+        "Account Number",
+        "ID / Passport copy",
+        "Company Registration certificate",
+        "Latest Invoice",
+        "Proof of address"
+      ],
+      "Tollfree": [
+        "LOA",
+        "Current underlying carrier's name",
+        "Porting history (if the number(s) were ported before)",
+        "Account Number",
+        "Latest Invoice"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "http://assets.ctfassets.net/taysl255dolk/5bvRirKjh7u8TWy0LkYiSc/c3d9da4269c2158f0e67496068a895e4/Rufnummernmitnahme_KDB_TELNYX.pdf",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/3266409-austria-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Belgium": {
+    "slug": "belgium",
+    "region": "EMEA",
+    "flag": "🇧🇪",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "4+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "4+ Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "4+ Business days"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 8 AM to 5 PM Local",
+    "requirements": {
+      "Local": [
+        "LOA (Local address required, area code must match the address on file)",
+        "VAT / TAX ID",
+        "Latest Invoice",
+        "Proof of local address"
+      ],
+      "National Tollfree": [
+        "LOA (National address required)",
+        "VAT / TAX ID",
+        "Latest Invoice",
+        "Proof of local address"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "https://assets.ctfassets.net/taysl255dolk/6YYtHkPiDoOfhR8Vp3QxUz/3f7b77cf78ecdebe280c6c0226ac12ea/LoA_-_Telnyx_-_INTL.pdf",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/3266421-belgium-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Brazil": {
+    "slug": "brazil",
+    "region": "Americas",
+    "flag": "🇧🇷",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time after 5 PM local",
+    "requirements": {
+      "All": [
+        "LOA (CPF / CNPJ required)",
+        "ID / Passport copy",
+        "Company Registration certificate",
+        "Latest Invoice"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "https://www.dropbox.com/s/fmli59wv3wfky7w/BrazilLOA.pdf?dl=0",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/3266425-brazil-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Chile": {
+    "slug": "chile",
+    "region": "Americas",
+    "flag": "🇨🇱",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 00:00 AM to 4 AM Local",
+    "requirements": {
+      "All": [
+        "E-RUT",
+        "LOA or POA",
+        "Latest Invoice",
+        "Power of Attorney",
+        "Certificate of Incorporation",
+        "RUT of the individual requesting portability",
+        "Proof of Payment (National carrier invoice, no resellers)"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "mailto:porting.intl@telnyx.com",
+        "label": "📧 Request LOA Template"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/3266652-chile-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Croatia": {
+    "slug": "croatia",
+    "region": "EMEA",
+    "flag": "🇭🇷",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "7 Business days"
+      },
+      "national": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "7 Business days"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 08 AM and 12 PM local",
+    "requirements": {
+      "Local National": [
+        "LOA",
+        "ID / Passport copy",
+        "Company Registration certificate",
+        "Latest Invoice"
+      ],
+      "Tollfree": [
+        "LOA",
+        "ID / Passport copy / Company Registration Certificate",
+        "Latest invoice"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "https://www.dropbox.com/s/1kd2hs03tq8o0bg/Croatia_Porting_Form.pdf?dl=0",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/3266656-croatia-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Cyprus": {
+    "slug": "cyprus",
+    "region": "EMEA",
+    "flag": "🇨🇾",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "9 AM local (only possibility)",
+    "requirements": {
+      "Local": [
+        "LOA (with Local address)",
+        "Latest Invoice with the current carrier",
+        "Company Registration (if company)",
+        "ID or Passport Number of the legal representative",
+        "Proof of address"
+      ],
+      "National Tollfree": [
+        "LOA (with National address)",
+        "Latest Invoice with the current carrier",
+        "Company Registration (if company)",
+        "ID or Passport Number of the legal representative",
+        "Proof of address"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "https://assets.ctfassets.net/taysl255dolk/1Cq2IXxuZiFRu03aA3LXB6/8006b5ee40f97ac95f050be7013c8bcb/CYPRUS_LOA-_Telnyx.pdf",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/3267566-cyprus-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Czech Republic": {
+    "slug": "czech republic",
+    "region": "EMEA",
+    "flag": "🇨🇿",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 9 AM to 4 PM local",
+    "requirements": {
+      "All": [
+        "LOA (Local Service address)",
+        "OKU (Migration code)",
+        "Latest Invoice",
+        "VAT / TAX ID",
+        "Proof of address"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "mailto:porting@telnyx.com",
+        "label": "📧 Request LOA Template"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/5190455-czech-republic-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Denmark": {
+    "slug": "denmark",
+    "region": "EMEA",
+    "flag": "🇩🇰",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "14+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "14+ Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "14+ Business days"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 09 AM to 4 PM local",
+    "requirements": {
+      "All": [
+        "LOA (a local address is mandatory, wet signature required)",
+        "Local TAX ID / VAT",
+        "Latest Invoice with the current provider"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "https://assets.ctfassets.net/taysl255dolk/6YYtHkPiDoOfhR8Vp3QxUz/3f7b77cf78ecdebe280c6c0226ac12ea/LoA_-_Telnyx_-_INTL.pdf",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/3266720-denmark-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Estonia": {
+    "slug": "estonia",
+    "region": "EMEA",
+    "flag": "🇪🇪",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "10 Business days"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 9 AM to 4 PM local",
+    "requirements": {
+      "Local Personal": [
+        "Name, last name",
+        "Contact phone number",
+        "Copy of ID or Passport"
+      ],
+      "Local Business": [
+        "Name of legal representative",
+        "Contact phone number",
+        "Company name",
+        "Copy of ID or Passport of legal representative",
+        "Copy of company registration"
+      ],
+      "Local Address": [
+        "Address in Estonia (street, building number, postal code, city, country)",
+        "Copy of utility bill (no older than 3 months)"
+      ],
+      "Tollfree Personal": [
+        "Name, last name",
+        "Contact phone number",
+        "Passport or ID copy"
+      ],
+      "Tollfree Business": [
+        "Company name",
+        "Contact phone number",
+        "Company registration certificate"
+      ],
+      "Tollfree Address": [
+        "Address Worldwide (street, building number, postal code, city and country)"
+      ]
+    },
+    "notes": [],
+    "loa_links": [],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/3506159-estonia-number-requirements",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Finland": {
+    "slug": "finland",
+    "region": "EMEA",
+    "flag": "🇫🇮",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 08 AM to 5 PM local",
+    "requirements": {
+      "Local National": [
+        "LOA",
+        "VAT/TAX ID or social security number",
+        "Latest Invoice"
+      ],
+      "Tollfree": [
+        "LOA",
+        "VAT/TAX ID or social security number",
+        "Attorney's authorization for representative (if number belongs to a company)",
+        "Latest Invoice"
+      ],
+      "Common Rejections": [
+        "Wrong end-user on document",
+        "Signature not readable/valid on the LOA"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "https://assets.ctfassets.net/taysl255dolk/BjAY6YlvDP8UHiRtMAtSP/009510c32ea7832407ab6c525f69478a/FINLAND-TELNYX.pdf",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/3266934-finland-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "France": {
+    "slug": "france",
+    "region": "EMEA",
+    "flag": "🇫🇷",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "8+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "8+ Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "8+ Business days"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 10 AM and 2 PM local",
+    "requirements": {
+      "All": [
+        "LOA (National address mandatory)",
+        "SIRET code (for business accounts, 14 digits)",
+        "RIO code (12 characters - dial 3179 to retrieve)",
+        "Latest Invoice with the current provider",
+        "Proof of address (dated within 3 months)"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "https://assets.ctfassets.net/taysl255dolk/4pv4cqjnsUfEGbyexn1Ycy/536af1c7e37734422a9556ea38582ceb/Telnyx_LoA_-_France.pdf",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/3266956-france-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Germany": {
+    "slug": "germany",
+    "region": "EMEA",
+    "flag": "🇩🇪",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "7+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "7+ Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5-7 Business days"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 6 AM to 8 AM local",
+    "requirements": {
+      "Local National": [
+        "Porting Form (Local address from the same city as the number)",
+        "Latest Invoice (from the current provider)",
+        "Proof of address",
+        "ID / Passport copy / Company Registration certificate"
+      ],
+      "Tollfree": [
+        "Porting Form (Local Address required within Germany)",
+        "Latest Invoice (only if current provider is a reseller)",
+        "Number allocation document (Zuteilungsbescheid)",
+        "ID / Passport copy / Company Registration certificate"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "https://www.dropbox.com/s/4d6jx7izmgaiun4/german-porting-document-and-address%20confirmation.pdf",
+        "label": "📄 Download LOA"
+      },
+      {
+        "url": "https://assets.ctfassets.net/taysl255dolk/1tsn59edoZYrYtwIzaKYd0/f4563a1894c76e07a588eb32e364999e/TFN_LOA.pdf",
+        "label": "📄 Download Toll-Free LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/3266960-germany-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Greece": {
+    "slug": "greece",
+    "region": "EMEA",
+    "flag": "🇬🇷",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "3+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "3+ Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "3+ Business days"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 9 AM to 6 PM local",
+    "requirements": {
+      "Local": [
+        "LOA",
+        "Greek TAX / VAT ID or company registration number",
+        "ID / Passport copy",
+        "Company Registration certificate",
+        "Latest Invoice with current carrier (numbers must be indicated on the invoice)"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "http://assets.ctfassets.net/taysl255dolk/6YYtHkPiDoOfhR8Vp3QxUz/3f7b77cf78ecdebe280c6c0226ac12ea/LoA_-_Telnyx_-_INTL.pdf",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/3266975-greece-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Hungary": {
+    "slug": "hungary",
+    "region": "EMEA",
+    "flag": "🇭🇺",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 8 PM to 12 AM local",
+    "requirements": {
+      "All": [
+        "LOA",
+        "Latest Invoice",
+        "Company Registration (if company)",
+        "Proof of address"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "mailto:porting@telnyx.com",
+        "label": "📧 Request LOA Template"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/5188524-hungary-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Ireland": {
+    "slug": "ireland",
+    "region": "EMEA",
+    "flag": "🇮🇪",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "1-7 Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "1-7 Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "1-7 Business days"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 10 AM to 4 PM local",
+    "requirements": {
+      "All": [
+        "LOA (downloadable template)",
+        "UAN (8 digits, found on end-user's invoice or request from current provider)"
+      ]
+    },
+    "notes": [
+      "Note: Customers porting away from EIR or OEIR must ensure with the current provider prior to port that numbers don't have special services."
+    ],
+    "loa_links": [
+      {
+        "url": "https://www.dropbox.com/s/9f8nesm8873og7d/IRELANDGEOPORTINGFORM-edit.pdf?dl=0",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/3266983-ireland-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Israel": {
+    "slug": "israel",
+    "region": "EMEA",
+    "flag": "🇮🇱",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "4+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "Yes"
+      },
+      "toll_free": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      },
+      "mobile": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "4+ Business days"
+      }
+    },
+    "porting_hours": "Standard time 9 AM to 5 PM local",
+    "requirements": {
+      "Local National Mobile": [
+        "LOA",
+        "VAT / TAX ID",
+        "Latest Invoice"
+      ]
+    },
+    "notes": [
+      "Note: If porting a Mobile Number under a business, the invoice must be the underlying carrier's. An official proof of ownership signed by the underlying carrier will be required."
+    ],
+    "loa_links": [
+      {
+        "url": "https://assets.ctfassets.net/taysl255dolk/6YYtHkPiDoOfhR8Vp3QxUz/3f7b77cf78ecdebe280c6c0226ac12ea/LoA_-_Telnyx_-_INTL.pdf",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/3266993-israel-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Italy": {
+    "slug": "italy",
+    "region": "EMEA",
+    "flag": "🇮🇹",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "15+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "15+ Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "15-20 Business days"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 8 AM to 4 PM local",
+    "requirements": {
+      "Local National": [
+        "LOA (Local address required)",
+        "Local TAX / VAT ID or company registration number",
+        "Migration code",
+        "Latest Invoice",
+        "Copy of Passport / ID of Authorized Person",
+        "Fiscal code of Authorized Person (16 characters)",
+        "Proof of local address (local address in Italian territory and legal presence with valid fiscal code)"
+      ],
+      "Tollfree": [
+        "LOA (Local address required)",
+        "Local TAX / VAT ID or company registration number",
+        "Latest Invoice",
+        "Copy of Passport / ID of Authorized Person",
+        "Proof of local address"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "https://assets.ctfassets.net/taysl255dolk/45LOLnr1ZO8PfWfHpAID9z/cf24bfaa49a0fc3d04900d5c0f9dfac5/LoA_TELNYX_Italy.pdf",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/3267012-italy-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Latvia": {
+    "slug": "latvia",
+    "region": "EMEA",
+    "flag": "🇱🇻",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "10+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "10+ Business days"
+      },
+      "toll_free": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time",
+    "requirements": {
+      "Local National": [
+        "LOA",
+        "Latest Invoice",
+        "ID number of the Authorized Person",
+        "Company Registration number (only if company)"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "https://assets.ctfassets.net/taysl255dolk/6YYtHkPiDoOfhR8Vp3QxUz/3f7b77cf78ecdebe280c6c0226ac12ea/LoA_-_Telnyx_-_INTL.pdf",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/5188540-latvia-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Lithuania": {
+    "slug": "lithuania",
+    "region": "EMEA",
+    "flag": "🇱🇹",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "1-2 Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "1-2 Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "1-2 Business days"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 9 AM to 4 PM local",
+    "requirements": {
+      "All": [
+        "LOA",
+        "Latest Invoice",
+        "VAT / TAX ID (if company) or Personal ID code (asmens kodas) if personal"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "https://assets.ctfassets.net/taysl255dolk/d30N9jIww0vlZyFZrovAP/58d1196eba9eb350947708a2de8bc840/Lithuania_Loa_-_Telnyx.pdf",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/5190470-lithuania-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Luxembourg": {
+    "slug": "luxembourg",
+    "region": "EMEA",
+    "flag": "🇱🇺",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "3+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "3+ Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "3+ Business days"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 9 AM to 4 PM local",
+    "requirements": {
+      "All": [
+        "LOA",
+        "VAT / TAX ID",
+        "Local contact phone number",
+        "Latest Invoice"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "https://assets.ctfassets.net/taysl255dolk/6YYtHkPiDoOfhR8Vp3QxUz/3f7b77cf78ecdebe280c6c0226ac12ea/LoA_-_Telnyx_-_INTL.pdf",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/5188555-luxembourg-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Mexico": {
+    "slug": "mexico",
+    "region": "Americas",
+    "flag": "🇲🇽",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "2-7 Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "2-7 Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "2-7 Business days"
+      },
+      "mobile": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "7 Business days"
+      }
+    },
+    "porting_hours": "Standard time 2 AM local",
+    "requirements": {
+      "Local National": [
+        "LOA (NIP for individual person) signed by the Authorized Person",
+        "Copy of the National ID / Passport",
+        "Latest Invoice",
+        "Company Registration Certificate (Acta Constitutiva) - if company"
+      ],
+      "Tollfree": [
+        "LOA signed by the Authorized Person",
+        "Copy of the ID / Passport",
+        "Latest Invoice",
+        "Company Registration Certificate (Acta Constitutiva) - if company"
+      ],
+      "Mobile": [
+        "LOA signed by the Authorized Person",
+        "Copy of the National ID / Passport",
+        "Assignment Letter completed and signed",
+        "Notarial Deed (POA) - if company"
+      ]
+    },
+    "notes": [],
+    "loa_links": [],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/3267101-mexico-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Netherlands": {
+    "slug": "netherlands",
+    "region": "EMEA",
+    "flag": "🇳🇱",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "2+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "7+ Business days"
+      },
+      "mobile": {
+        "status": "limited",
+        "label": "◐ Smart only",
+        "lead_time": "7+ Business days"
+      }
+    },
+    "porting_hours": "Standard time 09 AM to 4 PM local",
+    "requirements": {
+      "Local Smart Mobile": [
+        "LOA (User's local address from the same city as the number)",
+        "Latest Invoice",
+        "Copy of Company Registration certificate / Copy of ID",
+        "Proof of local address"
+      ],
+      "National": [
+        "LOA (National address required)",
+        "Latest Invoice",
+        "Copy of Company Registration / Copy of ID",
+        "Proof of local address",
+        "Number allocation document (OPTA/ACM Beschikking) - for +3188 only"
+      ],
+      "Tollfree": [
+        "LOA",
+        "Latest Invoice",
+        "ID / Passport copy",
+        "Company Registration certificate"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "https://assets.ctfassets.net/taysl255dolk/6YYtHkPiDoOfhR8Vp3QxUz/3f7b77cf78ecdebe280c6c0226ac12ea/LoA_-_Telnyx_-_INTL.pdf",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/3267124-netherlands-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "New Zealand": {
+    "slug": "new zealand",
+    "region": "APAC",
+    "flag": "🇳🇿",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "10+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "10+ Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "10+ Business days"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 08 AM and 12 PM local",
+    "requirements": {
+      "All": [
+        "LOA - Letter of Authorization signed by the authorized person",
+        "Latest Invoice - From current carrier, dated within the last 30 days",
+        "Contact Details - Full contact information",
+        "Local Address - Address within New Zealand is required"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "https://assets.ctfassets.net/taysl255dolk/72Cl4rcgvAl9N3Lt4iUalk/34cad211371dd434f52088f573a5f6b4/LoA_-_TELNYX_-_australia.pdf",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/3267206-new-zealand-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Norway": {
+    "slug": "norway",
+    "region": "EMEA",
+    "flag": "🇳🇴",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "7+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "7+ Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "14+ Business days"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 07 AM to 3 PM local",
+    "requirements": {
+      "All": [
+        "LOA (downloadable template)"
+      ]
+    },
+    "notes": [
+      "Note: Contact porting@telnyx.com for additional details."
+    ],
+    "loa_links": [
+      {
+        "url": "https://assets.ctfassets.net/taysl255dolk/6YYtHkPiDoOfhR8Vp3QxUz/3f7b77cf78ecdebe280c6c0226ac12ea/LoA_-_Telnyx_-_INTL.pdf",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/5188563-norway-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Peru": {
+    "slug": "peru",
+    "region": "Americas",
+    "flag": "🇵🇪",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "2-7 Business days"
+      },
+      "national": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      },
+      "toll_free": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 00:00 AM to 4 AM Local",
+    "requirements": {
+      "All": [
+        "Portability form (provided once we submit)",
+        "LOA",
+        "Latest Invoice"
+      ]
+    },
+    "notes": [],
+    "loa_links": [],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/3267436-peru-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Portugal": {
+    "slug": "portugal",
+    "region": "EMEA",
+    "flag": "🇵🇹",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "7+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "7+ Business days"
+      },
+      "toll_free": {
+        "status": "check",
+        "label": "check Telserv",
+        "lead_time": "N/A"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "N/A",
+    "requirements": {
+      "Local National": [
+        "LOA with local address within the city as the number prefix (wet signature mandatory)",
+        "Copy of the Latest Invoice",
+        "Copy of the Passport / ID of the Authorized Person",
+        "Power of attorney (proof that the Authorized Person who signed the LOA has the power to do so)",
+        "CVP (Portability Validation Code / Migration code)",
+        "TAX ID / VAT",
+        "Proof of address"
+      ]
+    },
+    "notes": [
+      "Note: Telnyx does not currently support Number Portability for PT local Mainline numbers with associated services. Outage during porting may occur (up to 3 hours, usually max 30 minutes)."
+    ],
+    "loa_links": [
+      {
+        "url": "https://assets.ctfassets.net/taysl255dolk/1Oaa0QNqequee3pdi3izCY/1e82e26ba0ef6789315a0f0d19e20188/Loa_-_Telnyx-_Portugal__PRT_.pdf",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/5120062-portugal-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Poland": {
+    "slug": "poland",
+    "region": "EMEA",
+    "flag": "🇵🇱",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "3+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "3+ Business days"
+      },
+      "toll_free": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Anytime on FOC",
+    "requirements": {
+      "Local National": [
+        "LOA (for local numbers, address must be within the same area as the phone number)",
+        "VAT / TAX ID (NIP) for Business, or PESEL for Personal",
+        "Company Registration Certificate (business only)",
+        "Latest invoice with the current carrier",
+        "ID / Passport copy of the authorized person"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "https://assets.ctfassets.net/taysl255dolk/1oEnZQgZI2KjrRJ9xiSFPk/4b4fa33b8cb5199be0bd33ab8b00c58f/Poland_LOA_-_Telnyx_.pdf",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/5188583-poland-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Romania": {
+    "slug": "romania",
+    "region": "EMEA",
+    "flag": "🇷🇴",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "3+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "toll_free": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 9AM local or 1PM local",
+    "requirements": {
+      "All": [
+        "LOA",
+        "Latest Invoice",
+        "Company Registration (if company)"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "https://assets.ctfassets.net/taysl255dolk/5FZ4qUVt9KGSMsGzbMK6zm/c09622fb44aac104169c67344c25dcf1/Portability_Form_-_Telnyx_-_Romania.pdf",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/5188564-romania-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Slovakia": {
+    "slug": "slovakia",
+    "region": "EMEA",
+    "flag": "🇸🇰",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "7+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "7+ Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "7+ Business days"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 12 PM to 6 PM local",
+    "requirements": {
+      "All": [
+        "LOA",
+        "Latest Invoice",
+        "VAT / TAX ID",
+        "Company Registration Certificate (if company)"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "https://assets.ctfassets.net/taysl255dolk/1od8xuO7Y7WKUrIlXXCM2t/57023f6b1ab4e56954597cfeb5151aa4/Slovakia_telnyx.pdf",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/5188567-slovakia-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Slovenia": {
+    "slug": "slovenia",
+    "region": "EMEA",
+    "flag": "🇸🇮",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "1+ Business day"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "1+ Business day"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "1+ Business day"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 12 AM to 02 AM local",
+    "requirements": {
+      "All": [
+        "LOA",
+        "Latest Invoice",
+        "TAX ID / VAT"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "https://www.dropbox.com/home/International%20Porting%20Documentation/Slovenia?preview=LOA+-+Telnyx+-+Slovenia+-+ENG.docx",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/5188572-slovenia-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "South Africa": {
+    "slug": "south africa",
+    "region": "EMEA",
+    "flag": "🇿🇦",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5-14 Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5-14 Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "7+ Business days"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time after 5 PM local",
+    "requirements": {
+      "Local": [
+        "LOA (local address required)",
+        "Latest Invoice",
+        "ID / Passport copy",
+        "Company Registration certificate",
+        "Proof of address"
+      ],
+      "National Tollfree": [
+        "LOA (National address required; for company requests, no E-signatures, on company letterhead or with company stamp)",
+        "Latest Invoice",
+        "ID / Passport copy",
+        "Company Registration certificate",
+        "Proof of address"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "https://www.dropbox.com/s/fvfhmlarpen9ucb/SouthAfrica-portingform.pdf?dl=0",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/4400326-south-africa-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Spain": {
+    "slug": "spain",
+    "region": "EMEA",
+    "flag": "🇪🇸",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 08 AM to 11 AM local",
+    "requirements": {
+      "All": [
+        "LOA (Spanish local address mandatory)",
+        "NIF/NIE/CIF (Tax Identification Number)",
+        "Latest Invoice from current carrier",
+        "Proof of address (dated within 3 months)"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "https://assets.ctfassets.net/taysl255dolk/4mfyR6jMGb8TvN0p5GQOUZ/b98742b348ba0c623ffab3d99ba3db31/TELNYX_ES_LOA.pdf",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/3267595-spain-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Sweden": {
+    "slug": "sweden",
+    "region": "EMEA",
+    "flag": "🇸🇪",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "14+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "14+ Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "14+ Business days"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 08 AM to 4 PM local",
+    "requirements": {
+      "All": [
+        "LOA (local address mandatory, wet signature required)",
+        "Local TAX ID / VAT (12 characters long)",
+        "Latest Invoice"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "https://assets.ctfassets.net/taysl255dolk/6YYtHkPiDoOfhR8Vp3QxUz/3f7b77cf78ecdebe280c6c0226ac12ea/LoA_-_Telnyx_-_INTL.pdf",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/3275772-sweden-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Switzerland": {
+    "slug": "switzerland",
+    "region": "EMEA",
+    "flag": "🇨🇭",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "10+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "10+ Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "14+ Business days"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 08 AM to 5 PM local",
+    "requirements": {
+      "Local National": [
+        "LOA (porting wish date must be mentioned, wet signature required)",
+        "Latest Invoice",
+        "VAT / TAX ID",
+        "Proof of address dated within 3 months (Latest invoice/Utility Bill/Insurance)"
+      ],
+      "Tollfree": [
+        "LOA (porting wish date must be mentioned)",
+        "Latest Invoice",
+        "Ownership proof from BAKOM (with ref number)"
+      ]
+    },
+    "notes": [
+      "Note: A single number belonging to a DDI Range cannot be ported out separately. DDI Range must include at least 10 successive Numbers or a multiple of it."
+    ],
+    "loa_links": [
+      {
+        "url": "https://assets.ctfassets.net/taysl255dolk/6YYtHkPiDoOfhR8Vp3QxUz/3f7b77cf78ecdebe280c6c0226ac12ea/LoA_-_Telnyx_-_INTL.pdf",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/3267626-switzerland-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Singapore": {
+    "slug": "singapore",
+    "region": "APAC",
+    "flag": "🇸🇬",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "national": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      },
+      "toll_free": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "Standard time 2 PM to 4 PM local",
+    "requirements": {
+      "All": [
+        "LOA - Signed by the authorized person",
+        "Latest Invoice from current carrier",
+        "Company Registration certificate (for business)",
+        "Copy of ID (for individual)",
+        "Local Singapore address"
+      ]
+    },
+    "notes": [
+      "Note: Porting hours are limited. Only local numbers are portable."
+    ],
+    "loa_links": [],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/7235002-singapore-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "United Kingdom": {
+    "slug": "united kingdom",
+    "region": "EMEA",
+    "flag": "🇬🇧",
+    "types": {
+      "local": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "5+ Business days"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "10+ Business days"
+      },
+      "toll_free": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "10+ Business days"
+      },
+      "mobile": {
+        "status": "limited",
+        "label": "◐ Limited",
+        "lead_time": "1+ Business day",
+        "carriers": [
+          "Vodafone",
+          "EE TM / Orange",
+          "Telefonica O2 & Virgin Media",
+          "Sky",
+          "Three UK",
+          "Gamma",
+          "LycaMobile",
+          "Vectone",
+          "Spusu (Mass Responsive)",
+          "Truphone",
+          "Cloud9 (Wireless Logic)",
+          "Lebara"
+        ]
+      }
+    },
+    "porting_hours": "Standard time 10 AM to 2 PM local",
+    "requirements": {
+      "Local": [
+        "UK template LOA (underlying carrier's name and/or Cupid code, Line type {single or multi}, Local address with valid postcode)",
+        "Latest Invoice with the current carrier"
+      ],
+      "National Tollfree": [
+        "UK template LOA (underlying carrier's name, Local address with valid postcode, Billing Account Number)",
+        "Latest Invoice with the current carrier"
+      ],
+      "Mobile": [
+        "LOA",
+        "Latest Invoice",
+        "PAC Number (Porting Authorization Code)"
+      ]
+    },
+    "notes": [],
+    "loa_links": [
+      {
+        "url": "https://assets.ctfassets.net/taysl255dolk/4e1xrif0j3u8PU1qrl6GY5/bc86537edcb4e1f903da88ea986bd293/TELNYX_-_UK_CLOA_2023.pdf",
+        "label": "📄 Download LOA"
+      }
+    ],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/3267693-united-kingdom-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  },
+  "Dominican Republic": {
+    "slug": "dominican republic",
+    "region": "Americas",
+    "flag": "🇩🇴",
+    "types": {
+      "local": {
+        "status": "limited",
+        "label": "◐ Limited",
+        "lead_time": "TBC"
+      },
+      "national": {
+        "status": "supported",
+        "label": "✓ Yes",
+        "lead_time": "TBC"
+      },
+      "toll_free": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      },
+      "mobile": {
+        "status": "not_supported",
+        "label": "✗ No",
+        "lead_time": "N/A"
+      }
+    },
+    "porting_hours": "TBC",
+    "requirements": {
+      "All": [
+        "LOA",
+        "Latest Invoice",
+        "ID / Passport copy",
+        "Company Registration (if company)"
+      ]
+    },
+    "notes": [],
+    "loa_links": [],
+    "resource_links": [
+      {
+        "url": "https://support.telnyx.com/en/articles/5190458-the-dominican-republic-number-porting",
+        "label": "📖 Full Porting Guide"
+      }
+    ]
+  }
+}
