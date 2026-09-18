@@ -21,7 +21,7 @@ Check `message.author.user.email` or `message.email_info.from_email` from the ti
 
 **Base URL:** `https://api.usepylon.com`
 **Auth:** `Authorization: Bearer $PYLON_API_TOKEN`
-**Token stored in:** `~/.openclaw/workspace/france-rio-provider/.env` (`PYLON_API_TOKEN`)
+**Token stored in:** Vault at `portingops-squad/PhenBot` (key: `PYLON_API_TOKEN`). Local `.env` at `~/.openclaw/workspace/france-rio-provider/.env` (regenerate via `VAULT_TOKEN=... ~/bin/load-vault-secrets.py`)
 
 | Action | Method | Endpoint | Notes |
 |--------|--------|----------|-------|
@@ -217,7 +217,7 @@ curl -X POST https://api.telnyx.com/v2/portability_checks \
 - The coverage data file is `references/porting-coverage.json` — 39 countries, 4 number types each.
 - Phone numbers must be E.164 before calling the portability API.
 - Use HTML in reply bodies (`body_html` field) for formatting in Pylon.
-- `TELNYX_API_KEY` is stored in `~/.openclaw/workspace/france-rio-provider/.env`.
+- `TELNYX_API_KEY` is stored in Vault at `portingops-squad/PhenBot` (regenerate local `.env` via `VAULT_TOKEN=... ~/bin/load-vault-secrets.py`).
 
 ## References
 
